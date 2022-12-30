@@ -49,8 +49,8 @@ RUN apt-get -y --no-install-recommends install \
 
 # RUN python3 -m pip install –upgrade pip 
 RUN python3 -m pip install \
-    numpy \
-    matplotlib  
+    numpy 
+    # matplotlib  
     # opencv-contrib-python
 
 CMD ["bash"]
