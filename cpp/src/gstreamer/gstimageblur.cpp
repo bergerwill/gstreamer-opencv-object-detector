@@ -210,11 +210,11 @@ gst_image_blur_set_info (GstVideoFilter * filter, GstCaps * incaps,
 
   imageblur->in_width = GST_VIDEO_INFO_WIDTH (in_info);
   imageblur->in_height = GST_VIDEO_INFO_HEIGHT (in_info);
-  imageblur->in_cv_type = CV_8UC3;
+  imageblur->in_cv_type = CV_8UC4;
 
   imageblur->out_width = GST_VIDEO_INFO_WIDTH (out_info);
   imageblur->out_height = GST_VIDEO_INFO_HEIGHT (out_info);
-  imageblur->out_cv_type = CV_8UC3;
+  imageblur->out_cv_type = CV_8UC4;
 
 
   int in_width = imageblur->in_width;
