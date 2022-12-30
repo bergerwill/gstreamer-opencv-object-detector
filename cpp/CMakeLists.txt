@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
-# cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.16)
 
 project(ObjectDetector) #Project name
 
@@ -11,15 +10,13 @@ pkg_check_modules(GSTREAMER REQUIRED
                 glib-2.0
                 gstreamer-1.0
                 gstreamer-base-1.0
-                # gstreamer-video-1.0
-                # gstreamer-bad-video-1.0 
+                gstreamer-video-1.0
                 )
 
 pkg_check_modules(OPENCV REQUIRED
                   opencv4 )
 
 
-# set(OPENCV_PREFIX "/usr/local")
 
 message(STATUS "GSTREAMER_INCLUDE_DIRS: ${GSTREAMER_INCLUDE_DIRS}")
 message(STATUS "GSTREAMER_LIBRARY_DIRS: ${GSTREAMER_LIBRARY_DIRS}")
@@ -43,10 +40,9 @@ link_directories(
 )
 
 
-# building gstreamer plugin
-add_library(gstfaceblur2 SHARED src/gstreamer/gstfaceblur.cpp)
-# target_link_libraries(gstfaceblur2  ${GSTREAMER_LIBRARIES} ${OPENCV_LIBRARIES})
-target_link_libraries(gstfaceblur2  ${GSTREAMER_LIBRARIES} ${OPENCV_LIBRARIES} "gstopencv-1.0")
+# build image blur element 
+add_library(gstimageblur SHARED src/gstreamer/gstimageblur.cpp )
+target_link_libraries(gstimageblur  ${GSTREAMER_LIBRARIES} ${OPENCV_LIBRARIES})
 
 
 #building target executable
