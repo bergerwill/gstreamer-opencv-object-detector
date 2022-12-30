@@ -24,6 +24,9 @@ At this point you should be inside the container terminal.
 ```
 cd cpp
 rm -rf build/ && mkdir -p build && cd build && cmake .. && make && cd .. 
+# add custom gstreamer plugin path
+export GST_PLUGIN_PATH=$GST_PLUGIN_PATH:/app/cpp/build
+gst-inspect-1.0 imageblur > /dev/null  # hack to load plugin before running binary
 ./build/ObjectDetector
 ```
 Above commands will start streaming to nginx-rtmp server. Corresponding application code is in `cpp/src/main.cpp` file.

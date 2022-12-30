@@ -11,6 +11,9 @@ int main(int argc, char *argv[])
   // char pipeline1[] = "playbin uri=https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm";
   char pipeline2[] = "videotestsrc is-live=true ! videoconvert ! x264enc bitrate=1000 tune=zerolatency ! video/x-h264 ! h264parse ! video/x-h264 ! queue ! flvmux name=mux ! rtmpsink location='rtmp://rtmp.docker:1935/stream/test live=1'"; 
 
+  char pipeline3[] = "videotestsrc ! videoconvert ! video/x-raw,width=640,height=480 ! imageblur ! x264enc bitrate=1000 tune=zerolatency ! video/x-h264 ! h264parse ! video/x-h264 ! queue ! flvmux name=mux ! rtmpsink location='rtmp://rtmp.docker:1935/stream/test live=1'";
+
+  char* pipelineStr = pipeline3;
   GstElement *pipeline = nullptr;
   GstBus *bus = nullptr;
   GstMessage *msg = nullptr;
@@ -19,10 +22,11 @@ int main(int argc, char *argv[])
   gst_init(&argc, &argv);
 
   // building pipeline
-  pipeline = gst_parse_launch(pipeline2, nullptr);
+  pipeline = gst_parse_launch(pipelineStr, nullptr);
 
   // start playing
   gst_element_set_state(pipeline, GST_STATE_PLAYING);
+  std::cout<<"pipeline set to playing" <<std::endl;
 
   // wait until error or EOS ( End Of Stream )
   bus = gst_element_get_bus(pipeline);

@@ -1,0 +1,13 @@
+services:
+  rtmp.docker:
+    image: alfg/nginx-rtmp
+    ports:
+      - 8080:80
+      - 1935:1935
+  gstreamer:
+    image: bergerwill/gstreamer-opencv-object-detector
+    command: bash
+
+networks:
+  default:
+    name: my-pre-existing-network
