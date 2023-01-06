@@ -2,3 +2,5 @@
 
 **/build
 
+# lets not commit videos in repo
+**/*.mp4

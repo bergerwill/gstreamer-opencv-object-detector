@@ -258,7 +258,7 @@ gst_image_blur_transform_frame_ip (GstVideoFilter * filter, GstVideoFrame * fram
   imageblur->cv_in_image.data = (unsigned char *) frame->data[0];
   imageblur->cv_in_image.datastart = (unsigned char *) frame->data[0];
 
-  blur(imageblur->cv_in_image, imageblur->cv_in_image, cv::Size(5,5));
+  blur(imageblur->cv_in_image, imageblur->cv_in_image, cv::Size(11,11));
 
   return GST_FLOW_OK;
 }
